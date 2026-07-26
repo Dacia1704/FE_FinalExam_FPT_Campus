@@ -1,5 +1,9 @@
+#File thiết kế ban đầu gen từ file yêu cầu
+
 # LearnHub — Online Learning Platform
+
 ### Tài liệu thiết kế dự án (Project Design Document)
+
 **Đề bài:** FE Final Group Exam — Online Learning Platform (multi-page, JS, CRUD, localStorage)
 
 ---
@@ -9,13 +13,14 @@
 Xây dựng 1 nền tảng học trực tuyến gồm **3 trang HTML** dùng chung CSS/JS, không build tool, không server, chạy thẳng bằng Chrome:
 
 | Problem | Nội dung | Trang | Trọng số |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | 01 | Course Listing + Course Detail (tĩnh, data hardcode) | `index.html`, `course-detail.html` | 25% |
 | 02 | Search + Filter category + Sort (JS thuần, không reload) | `index.html` | 20% |
 | 03 | Lesson Progress Tracker + Section Quiz (lưu `localStorage`) | `course-detail.html` | 25% |
 | 04 | Admin Panel — Full CRUD khoá học (lưu `localStorage`) | `admin.html` | 30% |
 
 Ràng buộc kỹ thuật quan trọng cần phản ánh vào thiết kế data:
+
 - Không dùng React/Vue/jQuery → mọi state sống trong **biến JS thuần** + `localStorage`.
 - Không có backend/database thật → `localStorage` đóng vai trò "DB" giả lập.
 - 2 nguồn dữ liệu độc lập nhưng phải **đồng bộ seed** với nhau:
@@ -45,14 +50,17 @@ GroupX_fee.finalexam.t01/
 ```
 
 **Vì sao tách file như vậy:**
+
 - `app.js` là **single source of truth** cho dữ liệu tĩnh (mảng `COURSES`) và các hàm dùng chung (render card, format giá, debounce search...) — cả `index.html` lẫn `detail.js`/`admin.js` đều `<script src="app.js">` trước, rồi mới load script riêng của trang.
 - `detail.js`, `admin.js` tách riêng để mỗi trang chỉ tải đúng logic của nó (đỡ nhầm biến toàn cục, dễ chia việc cho 6 thành viên: 1 người/1 file JS).
 - `style.css` dùng chung để tránh lệch UI giữa 3 trang (đề bài yêu cầu navbar/footer nhất quán).
 
 Thứ tự load script gợi ý trong mỗi trang:
+
 ```html
 <!-- index.html -->
-<script src="app.js"></script>       <!-- data + shared helpers -->
+<script src="app.js"></script>
+<!-- data + shared helpers -->
 <!-- (logic search/filter/sort của Problem 02 có thể viết thẳng trong app.js hoặc 1 file index.js riêng) -->
 
 <!-- course-detail.html -->
@@ -112,6 +120,7 @@ Course {
 ```
 
 Ví dụ 1 record đầy đủ:
+
 ```json
 {
   "id": "c001",
@@ -136,7 +145,9 @@ Ví dụ 1 record đầy đủ:
     "This course walks you through HTML5 and CSS3 from the ground up...",
     "By the end, you will be able to build fully responsive landing pages..."
   ],
-  "curriculum": [ /* xem CurriculumSection bên dưới */ ],
+  "curriculum": [
+    /* xem CurriculumSection bên dưới */
+  ],
   "createdAt": "2026-06-01T00:00:00.000Z"
 }
 ```
@@ -168,6 +179,7 @@ QuizQuestion {
 ```
 
 Ví dụ:
+
 ```json
 {
   "id": "c001-s1",
@@ -181,7 +193,12 @@ Ví dụ:
     {
       "id": "c001-s1-q1",
       "question": "What does HTML stand for?",
-      "options": ["HyperText Markup Language", "HighText Machine Language", "Hyperlink Text Markup Language", "None of the above"],
+      "options": [
+        "HyperText Markup Language",
+        "HighText Machine Language",
+        "Hyperlink Text Markup Language",
+        "None of the above"
+      ],
       "correctIndex": 0
     },
     {
@@ -214,6 +231,7 @@ ProgressRecord {
 ```
 
 Ví dụ giá trị lưu trong `localStorage.getItem("lh_progress_c001")`:
+
 ```json
 {
   "completedLessonIds": ["c001-s1-l1", "c001-s1-l2", "c001-s1-l3"],
@@ -222,6 +240,7 @@ Ví dụ giá trị lưu trong `localStorage.getItem("lh_progress_c001")`:
 ```
 
 Cách tính hiển thị:
+
 - `% progress = completedLessonIds.length / course.lessonsCount * 100`
 - Section được coi là **hoàn thành** (✅ badge) khi **toàn bộ** `lesson.id` của section đó nằm trong `completedLessonIds`.
 - "Take Quiz" chỉ hiện khi lesson cuối cùng của section đã có trong `completedLessonIds`.
@@ -243,6 +262,7 @@ QuizResultMap {
 ```
 
 Ví dụ:
+
 ```json
 {
   "c001-s1": {
@@ -279,6 +299,7 @@ AdminCourse {
 ```
 
 Ví dụ toàn bộ giá trị `lh_courses`:
+
 ```json
 [
   {
@@ -297,13 +318,21 @@ Ví dụ toàn bộ giá trị `lh_courses`:
 ```
 
 **Quy tắc seed lần đầu (chạy 1 lần trong `admin.js`, khi `localStorage.getItem("lh_courses") === null`):**
+
 ```js
 function seedCoursesIfEmpty() {
   if (localStorage.getItem("lh_courses") === null) {
-    const seed = COURSES.map(c => ({
-      id: c.id, title: c.title, category: c.category, instructor: c.instructor,
-      lessonsCount: c.lessonsCount, price: c.price, rating: c.rating,
-      status: c.status, createdAt: c.createdAt, updatedAt: c.createdAt
+    const seed = COURSES.map((c) => ({
+      id: c.id,
+      title: c.title,
+      category: c.category,
+      instructor: c.instructor,
+      lessonsCount: c.lessonsCount,
+      price: c.price,
+      rating: c.rating,
+      status: c.status,
+      createdAt: c.createdAt,
+      updatedAt: c.createdAt,
     }));
     localStorage.setItem("lh_courses", JSON.stringify(seed));
   }
@@ -311,6 +340,7 @@ function seedCoursesIfEmpty() {
 ```
 
 **Quy tắc CRUD ghi đè localStorage (mọi thao tác đều đọc mảng ra, sửa, rồi `setItem` lại nguyên mảng — không có API partial update):**
+
 - **CREATE:** validate form → tạo `id` mới duy nhất → push vào mảng → `updatedAt = createdAt = now` → save → re-render → toast "Course created."
 - **UPDATE:** tìm theo `id` → merge field mới → `updatedAt = now` (giữ nguyên `createdAt`) → save → re-render → toast "Course updated."
 - **DELETE:** confirm modal → `filter(c => c.id !== targetId)` → save → nếu course đang mở edit modal thì đóng modal trước → re-render → toast "Course deleted."
@@ -321,7 +351,7 @@ function seedCoursesIfEmpty() {
 ## 5. Bảng tổng hợp localStorage keys
 
 | Key | Ghi bởi | Đọc bởi | Kiểu dữ liệu | Vòng đời |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | `lh_courses` | admin.js | admin.js | `AdminCourse[]` | Seed 1 lần từ `COURSES`, sau đó độc lập, tồn tại vĩnh viễn cho tới khi user clear browser data |
 | `lh_progress_<courseId>` | detail.js | detail.js | `ProgressRecord` | 1 key / course, ghi mỗi lần tick checkbox lesson |
 | `lh_quiz_<courseId>` | detail.js | detail.js | `QuizResultMap` (theo sectionId) | 1 key / course, ghi mỗi lần "Submit Quiz" |
@@ -349,14 +379,16 @@ course-detail.html?id=c001  (Problem 01+03)
 ```
 
 Điều hướng giữa `index.html` → `course-detail.html` dùng query string chuẩn:
+
 ```html
 <a href="course-detail.html?id=c001">View Course</a>
 ```
+
 ```js
 // detail.js
 const params = new URLSearchParams(window.location.search);
 const courseId = params.get("id");
-const course = COURSES.find(c => c.id === courseId);
+const course = COURSES.find((c) => c.id === courseId);
 ```
 
 ---
@@ -374,7 +406,7 @@ const course = COURSES.find(c => c.id === courseId);
 ## 8. Ghi chú phân công theo file (gợi ý cho nhóm 6 người)
 
 | File | Vai trò |
-|---|---|
+| --- | --- |
 | `app.js` (COURSES data + helpers) | 1 người chốt schema + hardcode data trước tiên — cả nhóm phụ thuộc vào file này |
 | `index.html` + phần search/filter/sort | 1-2 người (Problem 01b + 02) |
 | `course-detail.html` + `detail.js` | 1-2 người (Problem 01c + 03) |
@@ -383,4 +415,4 @@ const course = COURSES.find(c => c.id === courseId);
 
 ---
 
-*Tài liệu này chỉ mô tả kiến trúc thư mục và schema dữ liệu — không phải là code hoàn chỉnh. Khi bắt tay code thật, giữ nguyên tên field/key ở trên để các file JS của các thành viên khác nhau ghép lại không bị lệch.*
+_Tài liệu này chỉ mô tả kiến trúc thư mục và schema dữ liệu — không phải là code hoàn chỉnh. Khi bắt tay code thật, giữ nguyên tên field/key ở trên để các file JS của các thành viên khác nhau ghép lại không bị lệch._
