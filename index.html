@@ -1,216 +1,337 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="LearnHub - Online Learning Platform. Explore expert-led courses in web development, design, data science, and marketing.">
-  <title>LearnHub - Online Learning Platform</title>
-  
-  <!-- Bootstrap 5 CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-  <!-- Bootstrap Icons -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-  
-  <!-- Custom Styles -->
-  <link href="style.css" rel="stylesheet">
-</head>
-<body>
-  <!-- Navbar Container -->
-  <div id="navbar-container"></div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="LearnHub - Online Learning Platform. Explore expert-led courses in web development, design, data science, and marketing."
+    />
+    <title>LearnHub - Online Learning Platform</title>
 
-  <!-- Main Content -->
-  <main>
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8 text-center hero-content">
-            <h1 class="hero-title">Grow Your Skills with LearnHub</h1>
-            <p class="hero-subtitle mx-auto">
-              Explore 100+ expert-led courses at your own pace. Learn web development, design, data science, and more.
-            </p>
-            <div class="d-flex justify-content-center gap-3 flex-wrap">
-              <a href="#courses" class="btn btn-light btn-lg hero-btn">
-                Browse Courses <i class="bi bi-arrow-right ms-2"></i>
-              </a>
-              <a href="#courses" class="btn btn-outline-light btn-lg hero-btn">
-                Learn More
-              </a>
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+
+    <!-- Custom Styles -->
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- Navbar Container -->
+    <div id="navbar-container"></div>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8 text-center hero-content">
+              <h1 class="hero-title">Grow Your Skills with LearnHub</h1>
+              <p class="hero-subtitle mx-auto">
+                Explore 100+ expert-led courses at your own pace. Learn web
+                development, design, data science, and more.
+              </p>
+              <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="#courses" class="btn btn-light btn-lg hero-btn">
+                  Browse Courses <i class="bi bi-arrow-right ms-2"></i>
+                </a>
+                <a
+                  href="#courses"
+                  class="btn btn-outline-light btn-lg hero-btn"
+                >
+                  Learn More
+                </a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Search Bar Section -->
-    <section class="search-bar-section" id="courses">
-      <div class="container">
-        <div class="search-input-group">
-          <div class="input-group">
-            <input type="text" id="search-input" class="form-control" placeholder="Search courses by title or instructor...">
-            <button class="btn btn-primary btn-search" type="button" id="search-btn">
-              <i class="bi bi-search"></i> Search
+      <!-- Search Bar Section -->
+      <section class="search-bar-section" id="courses">
+        <div class="container">
+          <div class="search-input-group">
+            <div class="input-group">
+              <input
+                type="text"
+                id="search-input"
+                class="form-control"
+                placeholder="Search courses by title or instructor..."
+              />
+              <button
+                class="btn btn-primary btn-search"
+                type="button"
+                id="search-btn"
+              >
+                <i class="bi bi-search"></i> Search
+              </button>
+              <button
+                class="btn btn-outline-secondary hidden"
+                type="button"
+                id="clear-search-btn"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Category Tabs Section -->
+      <section class="category-tabs">
+        <div class="container">
+          <div
+            class="d-flex justify-content-center flex-wrap gap-2"
+            id="category-tabs"
+          >
+            <button class="category-tab active" data-category="all">All</button>
+            <button class="category-tab" data-category="web-dev">
+              Web Dev
             </button>
-            <button class="btn btn-outline-secondary hidden" type="button" id="clear-search-btn">
-              <i class="bi bi-x-lg"></i>
+            <button class="category-tab" data-category="design">Design</button>
+            <button class="category-tab" data-category="data-science">
+              Data Science
+            </button>
+            <button class="category-tab" data-category="marketing">
+              Marketing
             </button>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Category Tabs Section -->
-    <section class="category-tabs">
-      <div class="container">
-        <div class="d-flex justify-content-center flex-wrap gap-2" id="category-tabs">
-          <button class="category-tab active" data-category="all">All</button>
-          <button class="category-tab" data-category="web-dev">Web Dev</button>
-          <button class="category-tab" data-category="design">Design</button>
-          <button class="category-tab" data-category="data-science">Data Science</button>
-          <button class="category-tab" data-category="marketing">Marketing</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sort Section -->
-    <section class="sort-section">
-      <div class="container">
-        <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
-          <p class="mb-0 text-muted" id="result-count">Showing all courses</p>
-          <div class="d-flex align-items-center gap-2">
-            <label for="sort-select" class="text-muted">Sort by:</label>
-            <select id="sort-select" class="sort-select form-select form-select-sm">
-              <option value="default">Default</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="rating">Rating: High to Low</option>
-            </select>
+      <!-- Sort Section -->
+      <section class="sort-section">
+        <div class="container">
+          <div
+            class="d-flex justify-content-between align-items-center flex-wrap gap-3"
+          >
+            <p class="mb-0 text-muted" id="result-count">Showing all courses</p>
+            <div class="d-flex align-items-center gap-2">
+              <label for="sort-select" class="text-muted">Sort by:</label>
+              <select
+                id="sort-select"
+                class="sort-select form-select form-select-sm"
+              >
+                <option value="default">Default</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="rating">Rating: High to Low</option>
+              </select>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Course Grid Section -->
-    <section class="courses-section">
-      <div class="container">
-        <div class="row g-4" id="course-grid">
-          <!-- Course cards will be rendered by JavaScript -->
+      <!-- Course Grid Section -->
+      <section class="courses-section">
+        <div class="container">
+          <div class="row g-4" id="course-grid">
+            <!-- Course cards will be rendered by JavaScript -->
+          </div>
         </div>
-      </div>
-    </section>
-  </main>
+      </section>
 
-  <!-- Footer Container -->
-  <div id="footer-container"></div>
+      <!-- Search, Filter Tabs & Sort Controls -->
+      <section class="container my-4">
+        <div class="row g-3 align-items-center mb-4">
+          <!-- 1. Live Search Input -->
+          <div class="col-md-6 col-lg-5">
+            <div class="input-group">
+              <span class="input-group-text bg-white"
+                ><i class="bi bi-search"></i
+              ></span>
+              <input
+                type="text"
+                id="searchInput"
+                class="form-control"
+                placeholder="Search by title or instructor..."
+                aria-label="Search courses"
+              />
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                id="clearSearchBtn"
+                title="Clear search"
+              >
+                <i class="bi bi-x-lg"></i>
+              </button>
+            </div>
+          </div>
 
-  <!-- Bootstrap 5 JS Bundle -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- App JavaScript -->
-  <script src="app.js"></script>
-  
-  <!-- Index Page JavaScript -->
-  <script>
-    // State variables for filtering and sorting
-    let currentSearch = "";
-    let currentCategory = "all";
-    let currentSort = "default";
-    let displayedCourses = [];
+          <!-- 2. Sort Dropdown -->
+          <div class="col-md-6 col-lg-3 ms-auto text-md-end">
+            <div class="d-flex align-items-center justify-content-md-end gap-2">
+              <label
+                for="sortSelect"
+                class="form-label mb-0 text-nowrap fw-semibold"
+                >Sort by:</label
+              >
+              <select id="sortSelect" class="form-select w-auto">
+                <option value="default" selected>Default</option>
+                <option value="price-asc">Price: Low to High</option>
+                <option value="price-desc">Price: High to Low</option>
+                <option value="rating-desc">Rating: High to Low</option>
+              </select>
+            </div>
+          </div>
+        </div>
 
-    // Initialize the page when DOM is ready
-    document.addEventListener("DOMContentLoaded", function() {
-      renderNavbar("courses");
-      renderFooter();
-      initializeFilters();
-      renderDisplayedCourses();
-    });
+        <!-- 3. Category Filter Tabs -->
+        <ul class="nav nav-pills mb-4 gap-2" id="categoryTabs">
+          <li class="nav-item">
+            <button class="nav-link active" data-category="All">All</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-category="Web Dev">Web Dev</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-category="Design">Design</button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-category="Data Science">
+              Data Science
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link" data-category="Marketing">
+              Marketing
+            </button>
+          </li>
+        </ul>
 
-    // Initialize filter event listeners
-    function initializeFilters() {
-      const searchInput = document.getElementById("search-input");
-      const searchBtn = document.getElementById("search-btn");
-      const clearSearchBtn = document.getElementById("clear-search-btn");
-      const sortSelect = document.getElementById("sort-select");
-      const categoryTabs = document.getElementById("category-tabs");
+        <!-- Course Grid Container & No Results Message -->
+        <div class="row g-4" id="courseGrid"></div>
+        <div id="noResults" class="text-center py-5 d-none">
+          <i class="bi bi-search fs-1 text-muted"></i>
+          <h4 class="mt-3 text-muted">No courses found</h4>
+          <p class="text-muted">
+            Try adjusting your search or category filter criteria.
+          </p>
+        </div>
+      </section>
+    </main>
 
-      // Search input with live filtering
-      searchInput.addEventListener("input", function() {
-        currentSearch = this.value;
-        clearSearchBtn.style.display = currentSearch ? "block" : "none";
-        applyFilters();
+    <!-- Footer Container -->
+    <div id="footer-container"></div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- App JavaScript -->
+    <script src="app.js"></script>
+
+    <!-- Index Page JavaScript -->
+    <script>
+      // State variables for filtering and sorting
+      let currentSearch = '';
+      let currentCategory = 'all';
+      let currentSort = 'default';
+      let displayedCourses = [];
+
+      // Initialize the page when DOM is ready
+      document.addEventListener('DOMContentLoaded', function () {
+        renderNavbar('courses');
+        renderFooter();
+        initializeFilters();
+        renderDisplayedCourses();
       });
 
-      // Search button click
-      searchBtn.addEventListener("click", function() {
-        currentSearch = searchInput.value;
-        applyFilters();
-      });
+      // Initialize filter event listeners
+      function initializeFilters() {
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const clearSearchBtn = document.getElementById('clear-search-btn');
+        const sortSelect = document.getElementById('sort-select');
+        const categoryTabs = document.getElementById('category-tabs');
 
-      // Clear search button
-      clearSearchBtn.addEventListener("click", function() {
-        searchInput.value = "";
-        currentSearch = "";
-        this.style.display = "none";
-        applyFilters();
-      });
+        // Search input with live filtering
+        searchInput.addEventListener('input', function () {
+          currentSearch = this.value;
+          clearSearchBtn.style.display = currentSearch ? 'block' : 'none';
+          applyFilters();
+        });
 
-      // Sort dropdown change
-      sortSelect.addEventListener("change", function() {
-        currentSort = this.value;
-        applyFilters();
-      });
+        // Search button click
+        searchBtn.addEventListener('click', function () {
+          currentSearch = searchInput.value;
+          applyFilters();
+        });
 
-      // Category tab clicks (using event delegation)
-      categoryTabs.addEventListener("click", function(e) {
-        const tab = e.target.closest(".category-tab");
-        if (!tab) return;
+        // Clear search button
+        clearSearchBtn.addEventListener('click', function () {
+          searchInput.value = '';
+          currentSearch = '';
+          this.style.display = 'none';
+          applyFilters();
+        });
 
-        // Update active state
-        categoryTabs.querySelectorAll(".category-tab").forEach(t => t.classList.remove("active"));
-        tab.classList.add("active");
+        // Sort dropdown change
+        sortSelect.addEventListener('change', function () {
+          currentSort = this.value;
+          applyFilters();
+        });
 
-        // Apply filter
-        currentCategory = tab.dataset.category;
-        applyFilters();
-      });
-    }
+        // Category tab clicks (using event delegation)
+        categoryTabs.addEventListener('click', function (e) {
+          const tab = e.target.closest('.category-tab');
+          if (!tab) return;
 
-    // Apply all filters and render courses
-    function applyFilters() {
-      // Filter by search
-      let filtered = filterCoursesBySearch(COURSES, currentSearch);
-      
-      // Filter by category
-      filtered = filterCoursesByCategory(filtered, currentCategory);
-      
-      // Sort
-      filtered = sortCourses(filtered, currentSort);
-      
-      // Update displayed courses
-      displayedCourses = filtered;
-      
-      // Update result count
-      updateResultCount();
-      
-      // Render
-      renderCourseGrid(displayedCourses);
-    }
+          // Update active state
+          categoryTabs
+            .querySelectorAll('.category-tab')
+            .forEach((t) => t.classList.remove('active'));
+          tab.classList.add('active');
 
-    // Update the result count text
-    function updateResultCount() {
-      const countText = document.getElementById("result-count");
-      const total = displayedCourses.length;
-      const word = total === 1 ? "course" : "courses";
-      countText.textContent = `Showing ${total} ${word}`;
-    }
+          // Apply filter
+          currentCategory = tab.dataset.category;
+          applyFilters();
+        });
+      }
 
-    // Render courses on initial load
-    function renderDisplayedCourses() {
-      displayedCourses = [...COURSES];
-      renderCourseGrid(displayedCourses);
-      updateResultCount();
-    }
-  </script>
-</body>
+      // Apply all filters and render courses
+      function applyFilters() {
+        // Filter by search
+        let filtered = filterCoursesBySearch(COURSES, currentSearch);
+
+        // Filter by category
+        filtered = filterCoursesByCategory(filtered, currentCategory);
+
+        // Sort
+        filtered = sortCourses(filtered, currentSort);
+
+        // Update displayed courses
+        displayedCourses = filtered;
+
+        // Update result count
+        updateResultCount();
+
+        // Render
+        renderCourseGrid(displayedCourses);
+      }
+
+      // Update the result count text
+      function updateResultCount() {
+        const countText = document.getElementById('result-count');
+        const total = displayedCourses.length;
+        const word = total === 1 ? 'course' : 'courses';
+        countText.textContent = `Showing ${total} ${word}`;
+      }
+
+      // Render courses on initial load
+      function renderDisplayedCourses() {
+        displayedCourses = [...COURSES];
+        renderCourseGrid(displayedCourses);
+        updateResultCount();
+      }
+    </script>
+  </body>
 </html>
