@@ -45,6 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // ==================== SIDEBAR & TABS ====================
+// Handles sidebar navigation and view switching between dashboard, courses, instructors, and reports.
 function initSidebarNavigation() {
   const sidebarLinks = document.querySelectorAll(".admin-sidebar .nav-link");
 
@@ -79,6 +80,7 @@ function initSidebarNavigation() {
 }
 
 // ==================== FILTER & SEARCH CONTROLS ====================
+// Sets up live search, category filter, status filter, and clear search button event listeners.
 function initFilterControls() {
   const searchInput = document.getElementById("admin-search-input");
   const clearSearchBtn = document.getElementById("admin-clear-search");
@@ -128,6 +130,7 @@ function initFilterControls() {
 }
 
 // ==================== CORE RENDER FUNCTION ====================
+// Main function to filter, paginate, and render the admin courses table and dashboard stats.
 function renderAdminView() {
   // 1. Filter dataset by search text, category, and status simultaneously
   filteredCourses = adminCourses.filter(course => {
@@ -187,6 +190,7 @@ function renderAdminView() {
 }
 
 // ==================== TABLE ROW RENDERING ====================
+// Renders course rows into the admin table with edit/delete buttons and checkbox selection.
 function renderTableRows(coursesSlice, startIndex) {
   const tbody = document.getElementById("admin-course-table-body");
   if (!tbody) return;
@@ -198,13 +202,13 @@ function renderTableRows(coursesSlice, startIndex) {
 
     return `
       <tr data-id="${course.id}">
-        <td class="text-center">
+        <td class="text-center col-tablet-hide">
           <input type="checkbox" class="form-check-input course-select-checkbox" data-id="${course.id}" ${isChecked}>
         </td>
         <td class="fw-semibold text-muted">${indexNumber}</td>
         <td>
           <div class="d-flex align-items-center gap-2">
-            <img src="${thumbnailSrc}" alt="${course.title}" class="course-thumb-mini shadow-sm" onerror="this.src='images/courses/c001.jpg'">
+            <img src="${thumbnailSrc}" alt="${course.title}" class="course-thumb-mini shadow-sm col-mobile-hide" onerror="this.src='images/courses/c001.jpg'">
             <div>
               <div class="fw-bold text-dark text-truncate" style="max-width: 260px;" title="${course.title}">
                 ${escapeHTML(course.title)}
@@ -213,12 +217,12 @@ function renderTableRows(coursesSlice, startIndex) {
             </div>
           </div>
         </td>
-        <td>
+        <td class="col-tablet-hide">
           <span class="badge bg-light text-dark border">
             ${getCategoryName(course.category)}
           </span>
         </td>
-        <td>
+        <td class="col-tablet-hide col-mobile-hide">
           <div class="small fw-medium">${escapeHTML(course.instructor)}</div>
         </td>
         <td class="text-center">
@@ -229,12 +233,12 @@ function renderTableRows(coursesSlice, startIndex) {
         <td class="text-end fw-bold ${course.price === 0 ? 'text-success' : 'text-dark'}">
           ${formatPrice(course.price)}
         </td>
-        <td class="text-center">
+        <td class="text-center col-tablet-hide col-mobile-hide">
           <span class="small fw-semibold text-warning">
             ⭐ ${course.rating ? course.rating.toFixed(1) : '5.0'}
           </span>
         </td>
-        <td class="text-center">
+        <td class="text-center col-mobile-hide">
           <span class="badge-status ${course.status === 'published' ? 'published' : 'draft'}">
             ${course.status || 'published'}
           </span>
@@ -282,6 +286,7 @@ function renderTableRows(coursesSlice, startIndex) {
 }
 
 // ==================== PAGINATION RENDERING ====================
+// Generates pagination controls and updates the showing info text based on current page.
 function renderPagination(totalItems, totalPages) {
   const paginationContainer = document.getElementById("admin-pagination");
   const infoText = document.getElementById("admin-pagination-info");
@@ -346,6 +351,7 @@ function renderPagination(totalItems, totalPages) {
 }
 
 // ==================== BULK DELETE & EXPORT CONTROLS ====================
+// Initializes bulk select-all, bulk delete, confirm delete, and CSV export button handlers.
 function initBulkAndDeleteControls() {
   const selectAllCheckbox = document.getElementById("select-all-courses");
   const bulkDeleteBtn = document.getElementById("bulk-delete-btn");
@@ -423,7 +429,7 @@ function initBulkAndDeleteControls() {
   }
 }
 
-// Update Bulk Delete UI State
+// Updates the bulk delete button visibility and select-all checkbox state based on selection count.
 function updateBulkDeleteUI() {
   const bulkDeleteBtn = document.getElementById("bulk-delete-btn");
   const selectedCountEl = document.getElementById("selected-count");
@@ -456,6 +462,7 @@ function updateBulkDeleteUI() {
 }
 
 // ==================== CSV EXPORT FUNCTIONALITY ====================
+// Exports the currently filtered courses to a downloadable CSV file using Blob API.
 function exportCoursesToCSV() {
   if (filteredCourses.length === 0) {
     showToast("No courses available to export.", "warning");
@@ -497,6 +504,7 @@ function exportCoursesToCSV() {
 }
 
 // ==================== MODAL FORM & CRUD HANDLERS ====================
+// Sets up the add course button and handles form submission for create/update operations.
 function initFormHandlers() {
   const addCourseBtn = document.getElementById("add-course-btn");
   const courseForm = document.getElementById("course-form");
@@ -627,7 +635,7 @@ function initFormHandlers() {
   }
 }
 
-// Open Add Course Modal
+// Opens the course modal in add mode with empty form and default values.
 function openAddModal() {
   const form = document.getElementById("course-form");
   if (form) {
@@ -645,7 +653,7 @@ function openAddModal() {
   }
 }
 
-// Open Edit Course Modal
+// Opens the course modal in edit mode, populating form fields with the existing course data.
 function openEditModal(courseId) {
   const course = adminCourses.find(c => c.id === courseId);
   if (!course) return;
@@ -673,7 +681,7 @@ function openEditModal(courseId) {
   }
 }
 
-// Open Delete Confirmation Modal for Single Course
+// Opens the delete confirmation modal for a single course, closing edit modal if open.
 function openDeleteConfirmation(courseId) {
   const course = adminCourses.find(c => c.id === courseId);
   if (!course) return;
@@ -695,7 +703,7 @@ function openDeleteConfirmation(courseId) {
   }
 }
 
-// Generate unique ID for new course
+// Generates a unique course ID by finding the maximum existing numeric ID and incrementing.
 function generateNewCourseId() {
   const numericIds = adminCourses
     .map(c => parseInt(c.id.replace(/\D/g, ""), 10))
@@ -707,6 +715,7 @@ function generateNewCourseId() {
 }
 
 // ==================== DASHBOARD STATS RENDERING ====================
+// Calculates and renders total courses, published count, instructors, avg rating, and category bars.
 function renderDashboardStats() {
   const totalCoursesEl = document.getElementById("dash-total-courses");
   const publishedCoursesEl = document.getElementById("dash-published-courses");
@@ -767,7 +776,8 @@ function renderDashboardStats() {
   }
 }
 
-// Helper: Escape HTML special characters
+// ==================== UTILITY ====================
+// Escapes HTML special characters to prevent XSS when rendering user-provided text.
 function escapeHTML(str) {
   if (!str) return "";
   return str

@@ -199,7 +199,7 @@
               <div class="input-group">
                 <span class="input-group-text bg-light border-end-0"><i class="bi bi-search text-muted"></i></span>
                 <input type="text" id="admin-search-input" class="form-control border-start-0" placeholder="Search courses by title or instructor...">
-                <button class="btn btn-outline-secondary border-start-0" type="button" id="admin-clear-search" style="display: none;">
+                <button class="btn btn-outline-secondary border-start-0 admin-clear-search-hidden" type="button" id="admin-clear-search">
                   <i class="bi bi-x-lg"></i>
                 </button>
               </div>
@@ -226,22 +226,22 @@
 
         <!-- Courses Table Card -->
         <div class="card admin-table-card mb-4">
-          <div class="table-responsive">
+          <div class="table-responsive admin-table-wrapper">
             <table class="table admin-table align-middle mb-0">
               <thead>
                 <tr>
-                  <th style="width: 40px;" class="text-center">
+                  <th class="col-width-40 text-center col-tablet-hide">
                     <input type="checkbox" class="form-check-input" id="select-all-courses">
                   </th>
-                  <th style="width: 60px;">#</th>
+                  <th class="col-width-60">#</th>
                   <th>Course Title</th>
-                  <th>Category</th>
-                  <th>Instructor</th>
+                  <th class="col-tablet-hide">Category</th>
+                  <th class="col-tablet-hide col-mobile-hide">Instructor</th>
                   <th class="text-center">Lessons</th>
                   <th class="text-end">Price</th>
-                  <th class="text-center">Rating</th>
-                  <th class="text-center">Status</th>
-                  <th class="text-center" style="width: 110px;">Actions</th>
+                  <th class="text-center col-tablet-hide col-mobile-hide">Rating</th>
+                  <th class="text-center col-mobile-hide">Status</th>
+                  <th class="text-center col-width-actions" style="width: 110px;">Actions</th>
                 </tr>
               </thead>
               <tbody id="admin-course-table-body">
