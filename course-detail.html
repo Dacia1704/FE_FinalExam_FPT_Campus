@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="LearnHub - Course Details">
+  <meta name="description" content="LearnHub course details, lesson progress, and section quizzes">
   <title>Course Details - LearnHub</title>
-  
+
   <!-- Bootstrap 5 CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  
+
   <!-- Bootstrap Icons -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-  
+
   <!-- Custom Styles -->
   <link href="style.css" rel="stylesheet">
 </head>
 <body>
-  <!-- Navbar Container -->
+  <!-- Shared Navbar -->
   <div id="navbar-container"></div>
 
-  <!-- Main Content -->
   <main>
-    <!-- Back Button -->
+    <!-- Back Link -->
     <div class="back-btn-container">
       <div class="container">
         <a href="index.html" class="back-btn">
@@ -30,29 +29,25 @@
       </div>
     </div>
 
-    <!-- Banner Section -->
+    <!-- Course Header -->
     <section class="detail-banner">
       <div class="container">
         <div class="row">
           <div class="col-lg-8">
-            <span class="category-badge bg-light text-dark mb-2" id="detail-category">Web Development</span>
+            <span class="category-badge bg-light text-dark mb-2" id="detail-category">Category</span>
             <h1 class="detail-title" id="detail-title">Course Title</h1>
             <div class="detail-meta">
-              <span class="detail-rating" id="detail-rating">
+              <span class="detail-rating">
                 <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-fill"></i>
-                <i class="bi bi-star-half"></i>
-                <span class="text-white ms-1" id="detail-rating-text">4.8</span>
+                <span class="text-white ms-1" id="detail-rating-text">0.0</span>
               </span>
-              <span class="text-white" id="detail-students">
+              <span class="text-white">
                 <i class="bi bi-people me-1"></i>
-                <span id="detail-students-text">1,200 students</span>
+                <span id="detail-students-text">0 students</span>
               </span>
-              <span class="text-white" id="detail-instructor">
+              <span class="text-white">
                 <i class="bi bi-person-circle me-1"></i>
-                <span id="detail-instructor-text">By: Instructor Name</span>
+                <span id="detail-instructor-text">By: Instructor</span>
               </span>
             </div>
           </div>
@@ -60,499 +55,99 @@
       </div>
     </section>
 
-    <!-- Course Content Section -->
+    <!-- Course Content -->
     <section class="py-5">
       <div class="container">
         <div class="row">
-          <!-- Main Content Column -->
           <div class="col-lg-8">
-            <!-- Course Image/Banner -->
-            <div class="mb-4">
-              <img src="" alt="Course Banner" id="detail-image" class="img-fluid rounded w-100 detail-banner-img">
-            </div>
-
-            <!-- What You'll Learn Section -->
-            <div class="learning-outcomes mb-4">
-              <h2 class="h4 mb-3">What You'll Learn</h2>
-              <ul class="learning-list" id="what-you-learn">
-                <!-- Rendered by JavaScript -->
-              </ul>
-            </div>
-
-            <!-- Course Description Section -->
-            <div class="mb-4">
-              <h2 class="h4 mb-3">Course Description</h2>
-              <div id="course-description">
-                <!-- Rendered by JavaScript -->
+            <!-- Simulated Lesson Player -->
+            <div class="lesson-player mb-4" id="lesson-player">
+              <img src="" alt="Course lesson player" id="detail-image" class="lesson-player-image">
+              <div class="lesson-player-overlay"></div>
+              <div class="lesson-player-content">
+                <button class="lesson-player-toggle" id="lesson-player-toggle" type="button"
+                        aria-label="Play selected lesson">
+                  <i class="bi bi-play-fill" id="lesson-player-icon"></i>
+                </button>
+                <div class="lesson-player-copy">
+                  <span class="lesson-player-eyebrow">Lesson Player</span>
+                  <h2 class="lesson-player-title" id="lesson-player-title">Course preview</h2>
+                  <p class="lesson-player-status mb-0" id="lesson-player-status">
+                    Select a lesson from the curriculum to begin.
+                  </p>
+                </div>
               </div>
             </div>
 
-            <!-- Curriculum Section -->
-            <div class="curriculum-section">
-              <h2 class="h4 mb-3">Course Curriculum</h2>
-              
-              <!-- Progress Section -->
+            <!-- Learning Outcomes -->
+            <section class="learning-outcomes mb-4" aria-labelledby="learning-heading">
+              <h2 class="h4 mb-3" id="learning-heading">What You'll Learn</h2>
+              <ul class="learning-list" id="what-you-learn"></ul>
+            </section>
+
+            <!-- Description -->
+            <section class="mb-4" aria-labelledby="description-heading">
+              <h2 class="h4 mb-3" id="description-heading">Course Description</h2>
+              <div id="course-description"></div>
+            </section>
+
+            <!-- Curriculum, Progress, and Quizzes -->
+            <section class="curriculum-section" aria-labelledby="curriculum-heading">
+              <h2 class="h4 mb-3" id="curriculum-heading">Course Curriculum</h2>
+
               <div class="progress-section" id="progress-section">
                 <div class="d-flex justify-content-between align-items-center mb-2">
-                  <span class="progress-label" id="progress-label">0 / 12 lessons completed</span>
+                  <span class="progress-label" id="progress-label">0 / 0 lessons completed</span>
                   <span class="badge bg-primary" id="progress-percent">0%</span>
                 </div>
                 <div class="progress-bar-track">
-                  <div class="progress-bar-fill" id="progress-bar"></div>
+                  <div class="progress-bar-fill" id="progress-bar" role="progressbar"
+                       aria-label="Course completion" aria-valuemin="0" aria-valuemax="100"
+                       aria-valuenow="0"></div>
                 </div>
               </div>
 
-              <!-- Accordion for Sections -->
-              <div class="accordion" id="curriculum-accordion">
-                <!-- Rendered by JavaScript -->
-              </div>
-            </div>
+              <div class="accordion" id="curriculum-accordion"></div>
+            </section>
           </div>
 
-          <!-- Sidebar Column -->
-          <div class="col-lg-4">
+          <!-- Sticky Enrollment Sidebar -->
+          <aside class="col-lg-4">
             <div class="detail-sidebar">
               <div class="card sidebar-card">
-                <img src="" alt="Course Thumbnail" id="sidebar-image" class="card-img-top">
+                <img src="" alt="Course thumbnail" id="sidebar-image" class="card-img-top">
                 <div class="card-body">
-                  <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="sidebar-price" id="sidebar-price">FREE</span>
-                    <span class="text-muted text-decoration-line-through" id="sidebar-original-price"></span>
-                  </div>
-                  <button class="btn btn-primary w-100 mb-3" id="enroll-btn">
+                  <span class="sidebar-price d-block mb-3" id="sidebar-price">FREE</span>
+                  <button class="btn btn-primary w-100 mb-3" id="enroll-btn" type="button">
                     Enroll Now <i class="bi bi-arrow-right ms-1"></i>
                   </button>
                   <p class="text-center text-muted small mb-3">30-Day Money-Back Guarantee</p>
-                  
-                  <h6 class="mb-3">This course includes:</h6>
+
+                  <h2 class="h6 mb-3">This course includes:</h2>
                   <ul class="sidebar-features">
                     <li>
                       <i class="bi bi-check-circle-fill"></i>
-                      <span id="sidebar-lessons-count">12 video lessons</span>
+                      <span id="sidebar-lessons-count">0 video lessons</span>
                     </li>
-                    <li>
-                      <i class="bi bi-check-circle-fill"></i>
-                      <span>Lifetime access</span>
-                    </li>
-                    <li>
-                      <i class="bi bi-check-circle-fill"></i>
-                      <span>Certificate of completion</span>
-                    </li>
-                    <li>
-                      <i class="bi bi-check-circle-fill"></i>
-                      <span>Mobile-friendly</span>
-                    </li>
+                    <li><i class="bi bi-check-circle-fill"></i><span>Lifetime access</span></li>
+                    <li><i class="bi bi-check-circle-fill"></i><span>Certificate of completion</span></li>
+                    <li><i class="bi bi-check-circle-fill"></i><span>Mobile-friendly</span></li>
                   </ul>
                 </div>
               </div>
             </div>
-          </div>
+          </aside>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer Container -->
+  <!-- Shared Footer -->
   <div id="footer-container"></div>
 
-  <!-- Bootstrap 5 JS Bundle -->
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  
-  <!-- App JavaScript -->
   <script src="app.js"></script>
-  
-  <!-- Course Detail JavaScript -->
-  <script>
-    // Course detail state
-    let currentCourse = null;
-    let completedLessons = [];
-
-    // Initialize page when DOM is ready
-    document.addEventListener("DOMContentLoaded", function() {
-      renderNavbar("courses");
-      renderFooter();
-      loadCourseDetails();
-    });
-
-    // Load course details from URL parameter
-    function loadCourseDetails() {
-      const courseId = getQueryParam("id");
-      if (!courseId) {
-        window.location.href = "index.html";
-        return;
-      }
-
-      currentCourse = findCourseById(courseId);
-      if (!currentCourse) {
-        window.location.href = "index.html";
-        return;
-      }
-
-      // Load progress from localStorage
-      const progress = getProgress(courseId);
-      completedLessons = progress.completedLessonIds || [];
-
-      // Render all sections
-      renderCourseHeader();
-      renderMainContent();
-      renderSidebar();
-      renderCurriculum();
-      updateProgressBar();
-    }
-
-    // Render course header (banner section)
-    function renderCourseHeader() {
-      document.getElementById("detail-category").textContent = getCategoryName(currentCourse.category);
-      document.getElementById("detail-title").textContent = currentCourse.title;
-      document.getElementById("detail-rating-text").textContent = `${currentCourse.rating} (${currentCourse.ratingCount})`;
-      document.getElementById("detail-students-text").textContent = `${formatNumber(currentCourse.students)} students`;
-      document.getElementById("detail-instructor-text").textContent = `By: ${currentCourse.instructor}`;
-      document.title = `${currentCourse.title} - LearnHub`;
-    }
-
-    // Render main content sections
-    function renderMainContent() {
-      // Course image
-      document.getElementById("detail-image").src = currentCourse.thumbnail;
-      document.getElementById("detail-image").alt = currentCourse.title;
-
-      // What You'll Learn
-      const whatYouLearnEl = document.getElementById("what-you-learn");
-      whatYouLearnEl.innerHTML = currentCourse.whatYouLearn.map(item => `
-        <li>
-          <i class="bi bi-check-circle-fill"></i>
-          <span>${item}</span>
-        </li>
-      `).join("");
-
-      // Course Description
-      const descriptionEl = document.getElementById("course-description");
-      descriptionEl.innerHTML = currentCourse.description.map(para => `<p>${para}</p>`).join("");
-    }
-
-    // Render sidebar card
-    function renderSidebar() {
-      document.getElementById("sidebar-image").src = currentCourse.thumbnail;
-      document.getElementById("sidebar-image").alt = currentCourse.title;
-      document.getElementById("sidebar-price").textContent = formatPrice(currentCourse.price);
-      document.getElementById("sidebar-lessons-count").textContent = `${currentCourse.lessonsCount} video lessons`;
-    }
-
-    // Render curriculum accordion
-    function renderCurriculum() {
-      const accordionEl = document.getElementById("curriculum-accordion");
-      accordionEl.innerHTML = "";
-
-      currentCourse.curriculum.forEach((section, index) => {
-        const sectionId = `section-${section.id}`;
-        const isFirst = index === 0;
-        const isSectionComplete = isSectionComplete(section);
-        const quizResult = getQuizResultForSection(section.id);
-        const lastLesson = section.lessons[section.lessons.length - 1];
-        const isLastLessonComplete = completedLessons.includes(lastLesson.id);
-
-        const accordionItem = document.createElement("div");
-        accordionItem.className = "accordion-item";
-        accordionItem.innerHTML = `
-          <h2 class="accordion-header" id="heading-${sectionId}">
-            <button class="accordion-button ${isFirst ? '' : 'collapsed'}" type="button" 
-                    data-bs-toggle="collapse" data-bs-target="#collapse-${sectionId}"
-                    aria-expanded="${isFirst}" aria-controls="collapse-${sectionId}">
-              <span class="me-2">${section.title}</span>
-              <span class="text-muted small">(${section.lessons.length} lessons)</span>
-              ${isSectionComplete ? '<span class="section-complete-badge">Complete</span>' : ''}
-            </button>
-          </h2>
-          <div id="collapse-${sectionId}" class="accordion-collapse collapse ${isFirst ? 'show' : ''}"
-               aria-labelledby="heading-${sectionId}" data-bs-parent="#curriculum-accordion">
-            <div class="accordion-body p-0">
-              <!-- Lessons List -->
-              ${section.lessons.map(lesson => `
-                <div class="lesson-item" data-lesson-id="${lesson.id}">
-                  <div class="lesson-info">
-                    <input type="checkbox" class="lesson-checkbox" id="lesson-${lesson.id}"
-                           ${completedLessons.includes(lesson.id) ? 'checked' : ''}
-                           data-section-id="${section.id}">
-                    <label for="lesson-${lesson.id}" class="mb-0 cursor-pointer">
-                      <i class="bi ${completedLessons.includes(lesson.id) ? 'bi-check-circle-fill text-success' : 'bi-circle'} me-1"></i>
-                      ${lesson.title}
-                    </label>
-                  </div>
-                  <span class="lesson-duration">${lesson.durationMin} min</span>
-                </div>
-              `).join("")}
-              
-              <!-- Take Quiz Button (shown after last lesson) -->
-              ${isLastLessonComplete ? `
-                <div class="p-3 text-center border-top">
-                  <button class="btn btn-outline-primary take-quiz-btn" data-section-id="${section.id}">
-                    Take Quiz
-                  </button>
-                  ${quizResult ? `
-                    <span class="ms-2 badge ${quizResult.passed ? 'bg-success' : 'bg-danger'}">
-                      ${quizResult.passed ? 'Passed' : 'Not Passed'}
-                    </span>
-                  ` : ''}
-                </div>
-                
-                <!-- Quiz Section (initially hidden) -->
-                <div class="quiz-section mx-3 mb-3 ${quizResult ? '' : 'd-none'}" id="quiz-${section.id}">
-                  <h5 class="mb-3">Quiz: ${section.title}</h5>
-                  ${section.quiz.map((q, qIndex) => `
-                    <div class="quiz-question" data-question-index="${qIndex}">
-                      <h6 class="mb-3">Q${qIndex + 1}. ${q.question}</h6>
-                      <div class="quiz-options">
-                        ${q.options.map((option, oIndex) => `
-                          <div class="quiz-option ${quizResult ? getOptionClass(quizResult, qIndex, oIndex, q.correctIndex) : ''}"
-                               data-option-index="${oIndex}">
-                            <span class="me-2">${String.fromCharCode(65 + oIndex)}.</span>
-                            <span>${option}</span>
-                          </div>
-                        `).join("")}
-                      </div>
-                    </div>
-                  `).join("")}
-                  <div class="quiz-result-section mt-3">
-                    ${quizResult ? renderQuizResult(quizResult) : ''}
-                  </div>
-                </div>
-              ` : ''}
-            </div>
-          </div>
-        `;
-        accordionEl.appendChild(accordionItem);
-      });
-
-      // Add event listeners for lesson checkboxes
-      initializeLessonCheckboxes();
-      initializeQuizButtons();
-    }
-
-    // Check if all lessons in a section are complete
-    function isSectionComplete(section) {
-      return section.lessons.every(lesson => completedLessons.includes(lesson.id));
-    }
-
-    // Get quiz result for a section
-    function getQuizResultForSection(sectionId) {
-      const results = getQuizResults(currentCourse.id);
-      return results[sectionId];
-    }
-
-    // Get option class based on quiz result
-    function getOptionClass(quizResult, questionIndex, optionIndex, correctIndex) {
-      if (!quizResult || !quizResult.answers) return '';
-      const selectedAnswer = quizResult.answers[questionIndex];
-      if (optionIndex === correctIndex) return 'correct';
-      if (optionIndex === selectedAnswer && optionIndex !== correctIndex) return 'incorrect';
-      return '';
-    }
-
-    // Render quiz result display
-    function renderQuizResult(quizResult) {
-      const passClass = quizResult.passed ? 'pass' : 'fail';
-      const statusText = quizResult.passed ? 'Congratulations! You passed!' : 'Sorry, you did not pass. Please retake the quiz.';
-      
-      return `
-        <div class="quiz-result ${passClass}">
-          <div class="d-flex justify-content-between align-items-center">
-            <div>
-              <strong>${quizResult.score} / ${quizResult.total}</strong> correct (${Math.round(quizResult.score / quizResult.total * 100)}%)
-            </div>
-            ${quizResult.passed ? `
-              <button class="btn btn-success btn-sm continue-btn">
-                Continue to Next Section <i class="bi bi-arrow-right ms-1"></i>
-              </button>
-            ` : `
-              <button class="btn btn-outline-danger btn-sm retake-btn">
-                Retake Quiz
-              </button>
-            `}
-          </div>
-          <p class="mb-0 mt-2">${statusText}</p>
-        </div>
-      `;
-    }
-
-    // Initialize lesson checkbox event listeners
-    function initializeLessonCheckboxes() {
-      const checkboxes = document.querySelectorAll(".lesson-checkbox");
-      checkboxes.forEach(checkbox => {
-        checkbox.addEventListener("change", function() {
-          const lessonId = this.dataset.lessonId;
-          const sectionId = this.dataset.sectionId;
-          handleLessonToggle(lessonId, sectionId, this.checked);
-        });
-      });
-    }
-
-    // Handle lesson checkbox toggle
-    function handleLessonToggle(lessonId, sectionId, isChecked) {
-      if (isChecked) {
-        if (!completedLessons.includes(lessonId)) {
-          completedLessons.push(lessonId);
-        }
-      } else {
-        completedLessons = completedLessons.filter(id => id !== lessonId);
-      }
-
-      // Save to localStorage
-      saveProgress(currentCourse.id, completedLessons);
-
-      // Update UI
-      updateLessonUI(lessonId, isChecked);
-      updateProgressBar();
-      updateSectionUI(sectionId);
-      updateQuizButton(sectionId);
-    }
-
-    // Update lesson UI (icon and label)
-    function updateLessonUI(lessonId, isComplete) {
-      const lessonItem = document.querySelector(`[data-lesson-id="${lessonId}"]`);
-      const icon = lessonItem.querySelector("i.bi");
-      const checkbox = lessonItem.querySelector(".lesson-checkbox");
-      
-      icon.className = isComplete ? "bi bi-check-circle-fill text-success me-1" : "bi bi-circle me-1";
-      checkbox.checked = isComplete;
-    }
-
-    // Update progress bar
-    function updateProgressBar() {
-      const totalLessons = currentCourse.lessonsCount;
-      const completed = completedLessons.length;
-      const percent = Math.round((completed / totalLessons) * 100);
-
-      document.getElementById("progress-label").textContent = `${completed} / ${totalLessons} lessons completed`;
-      document.getElementById("progress-percent").textContent = `${percent}%`;
-      document.getElementById("progress-bar").style.width = `${percent}%`;
-    }
-
-    // Update section UI (badge)
-    function updateSectionUI(sectionId) {
-      const section = currentCourse.curriculum.find(s => s.id === sectionId);
-      if (!section) return;
-
-      const isComplete = isSectionComplete(section);
-      const button = document.querySelector(`[aria-controls="collapse-section-${sectionId}"]`);
-      const existingBadge = button.querySelector(".section-complete-badge");
-
-      if (isComplete && !existingBadge) {
-        const badge = document.createElement("span");
-        badge.className = "section-complete-badge";
-        badge.textContent = "Complete";
-        button.appendChild(badge);
-      } else if (!isComplete && existingBadge) {
-        existingBadge.remove();
-      }
-    }
-
-    // Update quiz button visibility
-    function updateQuizButton(sectionId) {
-      const section = currentCourse.curriculum.find(s => s.id === sectionId);
-      if (!section) return;
-
-      const lastLesson = section.lessons[section.lessons.length - 1];
-      const isLastLessonComplete = completedLessons.includes(lastLesson.id);
-      const quizBtnContainer = document.querySelector(`.take-quiz-btn[data-section-id="${sectionId}"]`)?.parentElement;
-      
-      if (quizBtnContainer) {
-        const existingBtn = quizBtnContainer.querySelector(".take-quiz-btn");
-        if (!isLastLessonComplete) {
-          existingBtn?.remove();
-        }
-      } else if (isLastLessonComplete) {
-        // Add quiz button if last lesson is complete
-        const collapseEl = document.getElementById(`collapse-section-${sectionId}`);
-        if (collapseEl) {
-          const quizBtn = document.createElement("div");
-          quizBtn.className = "p-3 text-center border-top";
-          quizBtn.innerHTML = `
-            <button class="btn btn-outline-primary take-quiz-btn" data-section-id="${sectionId}">
-              Take Quiz
-            </button>
-          `;
-          const lessonsContainer = collapseEl.querySelector(".accordion-body");
-          lessonsContainer.appendChild(quizBtn);
-          initializeQuizButtons();
-        }
-      }
-    }
-
-    // Initialize quiz button event listeners
-    function initializeQuizButtons() {
-      // Take Quiz buttons
-      document.querySelectorAll(".take-quiz-btn").forEach(btn => {
-        btn.addEventListener("click", function() {
-          const sectionId = this.dataset.sectionId;
-          showQuiz(sectionId);
-        });
-      });
-
-      // Continue buttons
-      document.querySelectorAll(".continue-btn").forEach(btn => {
-        btn.addEventListener("click", function() {
-          openNextSection();
-        });
-      });
-
-      // Retake buttons
-      document.querySelectorAll(".retake-btn").forEach(btn => {
-        btn.addEventListener("click", function() {
-          const quizSection = this.closest(".quiz-section");
-          resetQuizUI(quizSection);
-        });
-      });
-
-      // Quiz option selection
-      document.querySelectorAll(".quiz-option").forEach(option => {
-        option.addEventListener("click", function() {
-          const question = this.closest(".quiz-question");
-          selectQuizOption(question, this);
-        });
-      });
-    }
-
-    // Show quiz section
-    function showQuiz(sectionId) {
-      const quizSection = document.getElementById(`quiz-${sectionId}`);
-      if (quizSection) {
-        quizSection.classList.remove("d-none");
-      }
-    }
-
-    // Select quiz option
-    function selectQuizOption(questionEl, selectedOption) {
-      const options = questionEl.querySelectorAll(".quiz-option");
-      options.forEach(opt => opt.classList.remove("selected"));
-      selectedOption.classList.add("selected");
-    }
-
-    // Reset quiz UI for retake
-    function resetQuizUI(quizSection) {
-      const sectionId = quizSection.id.replace("quiz-", "");
-      const options = quizSection.querySelectorAll(".quiz-option");
-      options.forEach(opt => {
-        opt.classList.remove("selected", "correct", "incorrect");
-      });
-      const resultSection = quizSection.querySelector(".quiz-result-section");
-      if (resultSection) {
-        resultSection.innerHTML = "";
-      }
-    }
-
-    // Open next accordion section
-    function openNextSection() {
-      const accordion = document.getElementById("curriculum-accordion");
-      const shownSections = accordion.querySelectorAll(".accordion-collapse.show");
-      if (shownSections.length > 0) {
-        const currentCollapse = shownSections[shownSections.length - 1];
-        const nextCollapse = currentCollapse.nextElementSibling;
-        if (nextCollapse) {
-          const bsCollapse = new bootstrap.Collapse(nextCollapse);
-          bsCollapse.show();
-        }
-      }
-    }
-  </script>
+  <script src="detail.js"></script>
 </body>
 </html>
