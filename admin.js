@@ -210,7 +210,7 @@ function renderTableRows(coursesSlice, startIndex) {
           <div class="d-flex align-items-center gap-2">
             <img src="${thumbnailSrc}" alt="${course.title}" class="course-thumb-mini shadow-sm col-mobile-hide" onerror="this.src='images/courses/c001.jpg'">
             <div>
-              <div class="fw-bold text-dark text-truncate" style="max-width: 260px;" title="${course.title}">
+              <div class="fw-bold text-dark text-truncate title-truncate-260" title="${course.title}">
                 ${escapeHTML(course.title)}
               </div>
               <small class="text-muted">ID: ${course.id}</small>
@@ -767,7 +767,7 @@ function renderDashboardStats() {
             <span class="fw-semibold text-dark">${catName}</span>
             <span class="text-muted">${count} courses (${pct}%)</span>
           </div>
-          <div class="progress" style="height: 8px;">
+          <div class="progress category-progress-track">
             <div class="progress-bar bg-primary" role="progressbar" style="width: ${pct}%;" aria-valuenow="${pct}" aria-valuemin="0" aria-valuemax="100"></div>
           </div>
         </div>

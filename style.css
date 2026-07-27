@@ -1091,6 +1091,14 @@ h1, h2, h3, h4, h5, h6 {
   width: 110px;
 }
 
+.title-truncate-260 {
+  max-width: 260px;
+}
+
+.category-progress-track {
+  height: 8px;
+}
+
 /* Mobile breakpoint: < 576px */
 @media (max-width: 575.98px) {
   .hero-section {
