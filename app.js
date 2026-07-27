@@ -867,8 +867,16 @@ function showToast(message, type = "success") {
  * Get progress from localStorage for a course
  */
 function getProgress(courseId) {
-  const data = localStorage.getItem(`lh_progress_${courseId}`);
-  return data ? JSON.parse(data) : { completedLessonIds: [], updatedAt: null };
+  try {
+    const data = localStorage.getItem(`lh_progress_${courseId}`);
+    const record = data ? JSON.parse(data) : null;
+    return record && Array.isArray(record.completedLessonIds)
+      ? record
+      : { completedLessonIds: [], updatedAt: null };
+  } catch (error) {
+    console.warn("Unable to restore lesson progress.", error);
+    return { completedLessonIds: [], updatedAt: null };
+  }
 }
 
 /**
@@ -876,18 +884,28 @@ function getProgress(courseId) {
  */
 function saveProgress(courseId, completedLessonIds) {
   const record = {
-    completedLessonIds,
+    completedLessonIds: [...completedLessonIds],
     updatedAt: new Date().toISOString()
   };
-  localStorage.setItem(`lh_progress_${courseId}`, JSON.stringify(record));
+  try {
+    localStorage.setItem(`lh_progress_${courseId}`, JSON.stringify(record));
+  } catch (error) {
+    console.warn("Unable to save lesson progress.", error);
+  }
 }
 
 /**
  * Get quiz results from localStorage for a course
  */
 function getQuizResults(courseId) {
-  const data = localStorage.getItem(`lh_quiz_${courseId}`);
-  return data ? JSON.parse(data) : {};
+  try {
+    const data = localStorage.getItem(`lh_quiz_${courseId}`);
+    const results = data ? JSON.parse(data) : {};
+    return results && typeof results === "object" && !Array.isArray(results) ? results : {};
+  } catch (error) {
+    console.warn("Unable to restore quiz results.", error);
+    return {};
+  }
 }
 
 /**
@@ -896,7 +914,11 @@ function getQuizResults(courseId) {
 function saveQuizResult(courseId, sectionId, result) {
   const results = getQuizResults(courseId);
   results[sectionId] = result;
-  localStorage.setItem(`lh_quiz_${courseId}`, JSON.stringify(results));
+  try {
+    localStorage.setItem(`lh_quiz_${courseId}`, JSON.stringify(results));
+  } catch (error) {
+    console.warn("Unable to save quiz result.", error);
+  }
 }
 
 /**
