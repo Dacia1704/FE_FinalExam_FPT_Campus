@@ -950,9 +950,9 @@ function renderNavbar(activePage = "") {
             </li>
           </ul>
           <div class="d-flex gap-2">
-            <button class="btn btn-outline-light" type="button">
-              <i class="bi bi-search"></i>
-            </button>
+            <a class="btn btn-outline-light d-flex align-items-center gap-1" href="admin.html">
+              <i class="bi bi-speedometer2"></i> Admin
+            </a>
             <button class="btn btn-light" type="button">Login</button>
           </div>
         </div>
@@ -1114,3 +1114,34 @@ function sortCourses(courses, sortBy) {
       return sorted;
   }
 }
+
+/**
+ * Get admin courses from localStorage (seeds with COURSES if empty)
+ */
+function getAdminCourses() {
+  try {
+    const data = localStorage.getItem("lh_courses");
+    if (!data) {
+      const initialCourses = JSON.parse(JSON.stringify(COURSES));
+      localStorage.setItem("lh_courses", JSON.stringify(initialCourses));
+      return initialCourses;
+    }
+    const courses = JSON.parse(data);
+    return Array.isArray(courses) ? courses : [];
+  } catch (error) {
+    console.warn("Unable to access localStorage for admin courses.", error);
+    return JSON.parse(JSON.stringify(COURSES));
+  }
+}
+
+/**
+ * Save admin courses array to localStorage
+ */
+function saveAdminCourses(courses) {
+  try {
+    localStorage.setItem("lh_courses", JSON.stringify(courses));
+  } catch (error) {
+    console.warn("Unable to save admin courses to localStorage.", error);
+  }
+}
+
